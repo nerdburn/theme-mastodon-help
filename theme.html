@@ -37,27 +37,15 @@
     
     <!-- table of contents -->
     <div class="toc">
-      <h2>
-        Table of Contents
-        <!-- <a href="#" class="toggle"><span class="toggle-message">Hide</span><span class="ss-icon toggle-icon">navigateup</span></a> -->
-      </h2>
+      <h2>Table of Contents</h2>
       <div class="toc-items">
-        <div class="container">
-          <ul>
-            <li><a href="{{ site.base_url }}" class="{{ set_active('/') }}">Getting Started</a></li>
-            <li><a href="{{ site.base_url }}/tag/creating-posts" class="{{ set_active('tag/creating-posts') }}">Creating Posts</a></li>
-            <li><a href="{{ site.base_url }}/tag/post-embeds" class="{{ set_active('tag/post-embeds') }}">Post Embeds</a></li>
-          </ul>
-          <ul>
-            <li><a href="{{ site.base_url }}/tag/integrations" class="{{ set_active('tag/integrations') }}">Integrations</a></li>
-            <li><a href="{{ site.base_url }}/tag/theme-code" class="{{ set_active('tag/theme-code') }}">Theme Code</a></li>
-            <li><a href="{{ site.base_url }}/tag/domains" class="{{ set_active('tag/domains') }}">Domains</a></li>
-          </ul>
-          <ul>
-            <li><a href="{{ site.base_url }}/tag/account" class="{{ set_active('tag/account') }}">Account</a></li>
-            <li><a href="{{ site.base_url }}/tag/faq" class="{{ set_active('tag/faq') }}">FAQ</a></li>
-          </ul>
-        </div>
+        <ul>
+          <li><a href="{{ site.base_url }}" class="{{ set_active('/') }}">Getting Started</a></li>
+          <li><a href="{{ site.base_url }}/tag/sending-emails" class="{{ set_active('tag/sending-emails') }}">Sending Emails</a></li>
+          <li><a href="{{ site.base_url }}/tag/email-formatting" class="{{ set_active('tag/theme-code') }}">Email Formatting</a></li>
+          <li><a href="{{ site.base_url }}/tag/account" class="{{ set_active('tag/account') }}">Account</a></li>
+          <li><a href="{{ site.base_url }}/tag/faq" class="{{ set_active('tag/faq') }}">FAQ</a></li>
+        </ul>
       </div>
     </div>    
 
@@ -128,17 +116,6 @@
     </div>
     {% endif %}        
 
-    {% endif %}
-
-    {% if posts|length > site.settings.posts_per_page %}
-      {% if pagination %}
-      <div class="pagination">
-        <div class="container">
-          {% if pagination.prev %}<a href="{{ pagination.prev }}" class="prev"><span class="ss-icon">previous</span> Previous Page</a>{% endif %}
-          {% if pagination.next %}<a href="{{ pagination.next }}" class="next">Next Page <span class="ss-icon">next</span></a>{% endif %}
-        </div>
-      </div>
-      {% endif %}
     {% endif %}
 
   </div><!-- end pad white -->
