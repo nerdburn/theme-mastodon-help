@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>{%if post %}{{ post.title }} | {% endif %}Mastodon - Help Center</title>
   {{ header_meta }}
-  <link rel="stylesheet" type="text/css" href="http://localhost:5000/css/mastodon.css">
+  <link rel="stylesheet" type="text/css" href="http://mastodonmail.com/css/mastodon.css">
   {% if site.analytics %}
   <script>
   var _gaq = _gaq || [];
@@ -22,7 +22,7 @@
 
   <!-- main nav -->
   <nav class="main-nav">
-    <a href="/" class="logo"><img src="http://localhost:5000/images/logo-white.svg" /></a>
+    <a href="/" class="logo"><img src="http://mastodonmail.com/images/logo-white.svg" /></a>
     <ul>
       <li><a href="http://mastodonmail.com/lists/all"><span class="ss-icon">users</span> Lists</a></li>
       <li><a href="http://mastodonmail.com/account/account"><span class="ss-icon">settings</span> Account</a></li>
@@ -42,7 +42,7 @@
         <ul>
           <li><a href="{{ site.base_url }}" class="{{ set_active('/') }}">Getting Started</a></li>
           <li><a href="{{ site.base_url }}/tag/sending-emails" class="{{ set_active('tag/sending-emails') }}">Sending Emails</a></li>
-          <li><a href="{{ site.base_url }}/tag/email-formatting" class="{{ set_active('tag/theme-code') }}">Email Formatting</a></li>
+          <li><a href="{{ site.base_url }}/tag/email-formatting" class="{{ set_active('tag/email-formatting') }}">Email Formatting</a></li>
           <li><a href="{{ site.base_url }}/tag/account" class="{{ set_active('tag/account') }}">Account</a></li>
           <li><a href="{{ site.base_url }}/tag/faq" class="{{ set_active('tag/faq') }}">FAQ</a></li>
         </ul>
