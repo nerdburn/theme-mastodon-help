@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <title>{%if post %}{{ post.title }} | {% endif %}Mastodon - Help Center</title>
+  {{ header_meta }}
+  <link rel="stylesheet" type="text/css" href="http://localhost:5000/css/mastodon.css">
+  {% if site.analytics %}
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '{{ site.analytics }}']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+  {% endif %}
+</head>
+<body>
+
+  <!-- main nav -->
+  <nav class="main-nav">
+    <a href="/" class="logo"><img src="images/logo-white.svg" /></a>
+    <ul>
+      <li><a href="http://mastodonmail.com/lists/all"><span class="ss-icon">users</span> Lists</a></li>
+      <li><a href="http://mastodonmail.com/account/account"><span class="ss-icon">settings</span> Account</a></li>
+      <li><a href="http://help.mastodonmail.com"><span class="ss-icon">file</span> Help</a></li>
+      <li><a href="http://mastodonmail.com/logout"><span class="ss-icon">redirect</span> Log Out</a></li>
+    </ul>
+  </nav>
+
+  <!-- content -->
+  <div class="slideIn">
+    
+    <!-- table of contents -->
+    <div class="toc">
+      <h2>
+        Table of Contents
+        <!-- <a href="#" class="toggle"><span class="toggle-message">Hide</span><span class="ss-icon toggle-icon">navigateup</span></a> -->
+      </h2>
+      <div class="toc-items">
+        <div class="container">
+          <ul>
+            <li><a href="{{ site.base_url }}" class="{{ set_active('/') }}">Getting Started</a></li>
+            <li><a href="{{ site.base_url }}/tag/creating-posts" class="{{ set_active('tag/creating-posts') }}">Creating Posts</a></li>
+            <li><a href="{{ site.base_url }}/tag/post-embeds" class="{{ set_active('tag/post-embeds') }}">Post Embeds</a></li>
+          </ul>
+          <ul>
+            <li><a href="{{ site.base_url }}/tag/integrations" class="{{ set_active('tag/integrations') }}">Integrations</a></li>
+            <li><a href="{{ site.base_url }}/tag/theme-code" class="{{ set_active('tag/theme-code') }}">Theme Code</a></li>
+            <li><a href="{{ site.base_url }}/tag/domains" class="{{ set_active('tag/domains') }}">Domains</a></li>
+          </ul>
+          <ul>
+            <li><a href="{{ site.base_url }}/tag/account" class="{{ set_active('tag/account') }}">Account</a></li>
+            <li><a href="{{ site.base_url }}/tag/faq" class="{{ set_active('tag/faq') }}">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>    
+
+    {% if is_home %}
+    
+    <div class="post">
+
+      <h1>Getting Started</h1>
+      <div class="post-content">
+        <p>Thanks for visiting the Postach.io Help Center. If you're new to Postach.io, we recommend you read the FAQ below.</p>
+        <h3>FAQ</h3>
+        <p>
+          <strong>How do I create a post?</strong><br />
+          Simply open up Evernote on your desktop or mobile, create a note in your Postach.io notebook, tag it "published", and then sync Evernote. To learn more about creating posts, check out the <a href="{{ site.base_url }}/tag/creating-posts">Creating Posts</a> section.
+        </p>
+        <p>
+          <strong>How do I add comments to my blog?</strong><br />
+          We don't support native comments, but you can easily install Disqus comments on any of our themes.
+        </p>
+        <p>
+          <strong>How do I change my portrait photo?</strong><br />
+          To upload a custom profile photo, create a note in your sites notebook and add the image you'd like to use. Tag the note with "avatar" and sync Evernote. That's it! Pro-tip: square images work best. For more info, check out the <a href="{{ site.base_url }}/how-to-change-your-avatar">How to Change Your Avatar</a> page.
+        </p>
+      </div>
+      
+    </div>
+
+    {% elif is_tag %}
+    
+    <div class="post">      
+
+      <h1>{{ tag|format_tag(False, True) }}</h1>
+
+      {% if posts %}
+      <ul class="posts">
+        {% for post in posts %}
+        <li>
+          <h3><a href="{{ post.permalink }}">{{ post.title }}</a></h3>
+          <p>{{ post.content }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      
+    </div>
+
+    {% elif post.type == 'post' %}
+
+    <div class="post">
+      <h1>{{ post.title }}</h1>
+      <div class="post-content" data-type-cleanup="true">
+        {{ post.content }}
+      </div>
+    </div>
+      
+    {% if site.disqus %}
+    <div class="post-comments">
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_shortname = '{{ site.disqus }}';
+        var disqus_url = '{{site.base_url}}{{ post.permalink }}';
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+    {% endif %}        
+
+    {% endif %}
+
+    {% if posts|length > site.settings.posts_per_page %}
+      {% if pagination %}
+      <div class="pagination">
+        <div class="container">
+          {% if pagination.prev %}<a href="{{ pagination.prev }}" class="prev"><span class="ss-icon">previous</span> Previous Page</a>{% endif %}
+          {% if pagination.next %}<a href="{{ pagination.next }}" class="next">Next Page <span class="ss-icon">next</span></a>{% endif %}
+        </div>
+      </div>
+      {% endif %}
+    {% endif %}
+
+  </div><!-- end content -->
+  
+  {{ footer_meta }}
+
+</body>
+</html>
